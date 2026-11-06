@@ -8,8 +8,9 @@ public class Calculator {
     private static final String OP_MINUS = "-";
     private static final String OP_MULTIPLY = "*";
     private static final String OP_DIVIDE = "/";
+    private static final double ZERO = 0;
 
-    public double calculate(double firstNumber, String operator, double secondNumber) {
+    public static double  calculate(double firstNumber, String operator, double secondNumber) {
         switch (operator) {
             case (OP_PLUS):
                 return firstNumber + secondNumber;
@@ -18,14 +19,14 @@ public class Calculator {
             case (OP_MULTIPLY):
                 return firstNumber * secondNumber;
             case (OP_DIVIDE):
-                return firstNumber / secondNumber;
+                return divide(firstNumber, secondNumber);
             default:
                 throw new IllegalArgumentException(ERROR_INVALID_FORMAT);
         }
     }
 
-    public double divide(double firstNumber, double secondNumber) {
-        if(secondNumber == 0) {
+    public static double divide(double firstNumber, double secondNumber) {
+        if(secondNumber == ZERO) {
             throw new ArithmeticException(ERROR_DIVISION_ZERO);
         }
         return firstNumber / secondNumber;
