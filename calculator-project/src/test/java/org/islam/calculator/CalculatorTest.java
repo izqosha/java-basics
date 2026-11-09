@@ -2,6 +2,8 @@ package org.islam.calculator;
 import org.islam.calculator.calculator.Calculator;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.islam.calculator.calculator.HistoryManager;
+
 
 public class CalculatorTest {
     @Test
