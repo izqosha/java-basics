@@ -1,4 +1,4 @@
-package org.islam.calculator.calculator;
+package org.islam.calculator.operations;
 
 public class ModuloOperation implements Operation {
     @Override

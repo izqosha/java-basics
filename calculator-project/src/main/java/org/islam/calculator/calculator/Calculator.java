@@ -1,5 +1,7 @@
 package org.islam.calculator.calculator;
 
+import org.islam.calculator.operations.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +13,6 @@ public class Calculator {
     private static final String OP_MINUS = "-";
     private static final String OP_MULTIPLY = "*";
     private static final String OP_DIVIDE = "/";
-    private static final double ZERO = 0;
 
     static Map<String, Operation> operations = new HashMap<>();
 
@@ -26,12 +27,5 @@ public class Calculator {
             throw new IllegalArgumentException(ERROR_INVALID_FORMAT);
         }
         return op.execute(firstNumber, secondNumber);
-    }
-
-    public static double divide(double firstNumber, double secondNumber) {
-        if(secondNumber == ZERO) {
-            throw new ArithmeticException(ERROR_DIVISION_ZERO);
-        }
-        return firstNumber / secondNumber;
     }
 }

@@ -1,5 +1,9 @@
 package org.islam.calculator;
 import org.islam.calculator.calculator.*;
+import org.islam.calculator.operations.AddOperation;
+import org.islam.calculator.operations.DivideOperation;
+import org.islam.calculator.operations.MultiplyOperation;
+import org.islam.calculator.operations.Operation;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

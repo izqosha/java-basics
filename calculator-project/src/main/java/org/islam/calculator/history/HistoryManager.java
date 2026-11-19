@@ -1,4 +1,4 @@
-package org.islam.calculator.calculator;
+package org.islam.calculator.history;
 
 import java.util.ArrayList;
 import java.util.Collections;

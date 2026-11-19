@@ -1,6 +1,6 @@
 package org.islam.calculator;
 
-import org.islam.calculator.calculator.HistoryManager;
+import org.islam.calculator.history.HistoryManager;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

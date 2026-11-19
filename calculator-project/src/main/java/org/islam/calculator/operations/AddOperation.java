@@ -1,4 +1,4 @@
-package org.islam.calculator.calculator;
+package org.islam.calculator.operations;
 
 public class AddOperation implements Operation {
     @Override

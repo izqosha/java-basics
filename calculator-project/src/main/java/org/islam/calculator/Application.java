@@ -1,4 +1,7 @@
-package org.islam.calculator.calculator;
+package org.islam.calculator;
+
+import org.islam.calculator.calculator.Calculator;
+import org.islam.calculator.history.HistoryManager;
 
 import java.util.List;
 import java.util.Scanner;
