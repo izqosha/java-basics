@@ -15,20 +15,20 @@ public class Application {
     private static final String HISTORY_IS_EMPTY = "История пуста";
     private static final String HELP_MESSAGE =
             "Доступные команды:\n" +
-            "\n" +
-            "<число> <оператор> <число> \n" +
-            "\n" +
-            "Операторы: \n" +
-            "+ сложение \n" +
-            "- вычитание \n" +
-            "* умножение \n" +
-            "/ деление \n" +
-            "\n" +
-            "Дополнительные команды: \n" +
-            "history - показать историю \n" +
-            "last    - показать последнюю операцию\n" +
-            "clear   - очистить историю\n" +
-            "exit    - выход";
+                    "\n" +
+                    "<число> <оператор> <число> \n" +
+                    "\n" +
+                    "Операторы: \n" +
+                    "+ сложение \n" +
+                    "- вычитание \n" +
+                    "* умножение \n" +
+                    "/ деление \n" +
+                    "\n" +
+                    "Дополнительные команды: \n" +
+                    "history - показать историю \n" +
+                    "last    - показать последнюю операцию\n" +
+                    "clear   - очистить историю\n" +
+                    "exit    - выход";
 
     private static final String CMD_HELP = "help";
     private static final String CMD_HISTORY = "history";
@@ -44,10 +44,10 @@ public class Application {
     private final HistoryManager historyManager = new HistoryManager();
 
     public void run() {
-        while(true) {
+        while (true) {
             System.out.print(PROMPT);
             String input = scanner.nextLine().trim();
-            if(input.equals(EXIT_COMMAND)) break;
+            if (input.equals(EXIT_COMMAND)) break;
             processInput(input);
         }
     }
@@ -63,14 +63,11 @@ public class Application {
             if (lastRecord == null) {
                 System.out.println(HISTORY_IS_EMPTY);
             } else {
-                int equalIndex = lastRecord.indexOf("=");
-                if (equalIndex != -1) {
-                    String onlyResult = lastRecord.substring(equalIndex + 1).trim();
-                    System.out.println(onlyResult);
-                }
+                System.out.println(lastRecord);
             }
             return;
         }
+
         if (input.equalsIgnoreCase(CMD_HELP)) {
             System.out.println(HELP_MESSAGE);
             return;
@@ -80,7 +77,7 @@ public class Application {
             if (history.isEmpty()) {
                 System.out.println(HISTORY_IS_EMPTY);
             } else {
-                for ( int i = 0; i < history.size(); i++) {
+                for (int i = 0; i < history.size(); i++) {
                     System.out.println((i + 1) + ") " + history.get(i));
                 }
             }
@@ -88,17 +85,25 @@ public class Application {
         }
 
         try {
-            String[] parts = input.split(" ");
-            double result = calculator.calculate(
-            Double.parseDouble(parts[PART_FIRST_NUMBER]),
-            parts[PART_OP],
-            Double.parseDouble(parts[PART_SECOND_NUMBER])
-            );
-            System.out.println(RESULT_TEXT + result);
-            String record = input + RESULT_FORMAT + result;
-            historyManager.addRecord(record);
+            String[] parts = input.trim().split("\\s+");
+            if (parts.length == 3) {
+                double result = calculator.calculate(
+                        Double.parseDouble(parts[PART_FIRST_NUMBER]),
+                        parts[PART_OP],
+                        Double.parseDouble(parts[PART_SECOND_NUMBER])
+                );
+                System.out.println(input + RESULT_FORMAT + result);
+                String record = input + RESULT_FORMAT + result;
+                historyManager.addRecord(record);
+            } else {
+                System.out.println(Calculator.ERROR_INVALID_INPUT);
+            }
         } catch (NumberFormatException e) {
             System.out.println(Calculator.ERROR_INVALID_FORMAT);
+        } catch (ArithmeticException e) {
+            System.out.println(Calculator.ERROR_DIVISION_ZERO);
+        } catch (IllegalArgumentException e) {
+            System.out.println(Calculator.ERROR_ILLEGAL_ARGUMENT);
         }
     }
 }
